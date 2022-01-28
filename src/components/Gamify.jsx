@@ -1,4 +1,5 @@
 import { Typography } from "antd";
+import { Runes } from "../Runes.png";
 
 export default function Gamify({tab}) {
 
@@ -13,6 +14,17 @@ export default function Gamify({tab}) {
       <p style={{ color: "grey" }}>
         Collect prosperity shards, build with your community, and create your dream.
       </p>
+
+      < div style={styles.collected}>
+        <div style={styles.colHeading}>
+          <span>My Shards</span>
+          <p style={styles.count}>120</p>
+        </div>
+        <div>
+          <img src={Runes} alt="A fistfull of beautiful shards"/>
+        </div>
+      </div>
+      
       </div>
       );
   }
