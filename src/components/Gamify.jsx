@@ -1,10 +1,27 @@
-import { Typography, Tag, Button, Table, Space } from "antd";
+import { Typography, Tag, Button, Table, Space, Card } from "antd";
 import  Donuts  from "../Donut.png";
 import { FireFilled } from "@ant-design/icons";
+import Mages from "../Mages.png"
+import Hoodie from "../Hoodie.png"
+import CandyMachine from "../Candy_Machine.png"
+import { useMoralis } from 'react-moralis';
+import { useEffect } from "react";
+import useCollectors from 'hooks/useCollectors';
+
 
 export default function Gamify({tab}) {
 
   const { Title } = Typography;
+  const { Moralis, account, isInitialized, isAuthenticated} = useMoralis();
+
+  useEffect(() => {
+    if (isInitialized && isAuthenticated) {
+      const fetch = async () => {
+        await getUser();
+      }
+      fetch()
+    }
+  }, [isInitialized, isAuthenticated])
 
   const days =[10, 10, 20, 30, 50, 80, 130];
   const dataSource = [];
@@ -66,7 +83,40 @@ export default function Gamify({tab}) {
       marginBottom: "35px",
       flexWrap: "wrap",
     },
-  }
+    rew: {
+      marginTop: "20px",
+      marginBottom: "35px",
+      display: "flex",
+      gap: "35px",
+      flexWrap: "wrap",
+    },
+    rewardCard: {
+      width: "310px",
+      height: "400px",
+      borderRadius: "15px",
+    },
+    rewardImg: {
+      height: "200px",
+      overflow: "hidden",
+      borderRadius: "15px 15px 0 0",
+    },
+    cardImg: {
+      overflow: "hidden",
+      borderRadius: "15px 15px 0 0",
+      width: "47%",
+      height: "50%",
+      margin: "0 auto",
+    },
+    bottom: {
+      position: "absolute",
+      bottom: "24px",
+      left: "24px",
+      width: "262px",
+      display: "flex",
+      justifyContent: "space-between",
+    },
+
+  };
     
   if (tab === "donuts") {
     return (
@@ -156,6 +206,97 @@ export default function Gamify({tab}) {
       </Space>
       
         </div>
+
+        <p style={{ color: "gray", marginBottom: "35px"}}>
+          Dilligently collecting cute cartoon donuts leads to delicious sprinkle coin rewards and whitelists you for the cute coffee NFT drop.
+        </p>
+
+        <Tag color="rgba(47, 79, 79, 0.2)" style={{ color: "#21bf96"}}>Claim Rewards</Tag>
+
+        <div style={styles.rew}>
+          <Card 
+            hoverable
+            style={styles.rewardCard}
+            cover={
+              <div style={styles.rewardImg}>
+                <img src={Mages} alt="" ></img>
+              </div>
+            }
+            >
+              <Title level={5} style={{ color: "white"}}>
+                Donut Collector - Mage NFT
+              </Title>
+              <p style={{color: "gray"}}>
+                Collect enough donuts to earn the title of Glazed lord.
+              </p>
+
+              <div style={styles.bottom}>
+                <Space size={"small"}>
+                  <span title={{ color: "gray"}}>Price:</span>
+                  <Tag color={"#324252"} style={{height: "22px"}}>
+                    <FireFilled /> 2000
+                  </Tag>
+                </Space>
+                <span style={{ color: "gray" }}>Supply: 670:1000</span>
+              </div>
+            </Card>
+
+            <Card 
+            hoverable
+            style={styles.rewardCard}
+            cover={
+              <div style={styles.rewardImg}>
+                <img src={Hoodie} alt="" ></img>
+              </div>
+            }
+            >
+              <Title level={5} style={{ color: "white"}}>
+                Donut Nation Merch - Coffee Mug
+              </Title>
+              <p style={{color: "gray"}}>
+                Sick ass mug to drink coffee with
+              </p>
+
+              <div style={styles.bottom}>
+                <Space size={"small"}>
+                  <span title={{ color: "gray"}}>Price:</span>
+                  <Tag color={"#324252"} style={{height: "22px"}}>
+                    <FireFilled /> 1000
+                  </Tag>
+                </Space>
+                <span style={{ color: "gray" }}>Supply: Infinite</span>
+              </div>
+            </Card>
+
+            <Card 
+            hoverable
+            style={styles.rewardCard}
+            cover={
+              <div style={styles.cardImg}>
+                <img src={CandyMachine} alt="" ></img>
+              </div>
+            }
+            >
+              <Title level={5} style={{ color: "white"}}>
+                Candy Machine NFT
+              </Title>
+              <p style={{color: "gray"}}>
+                Can be staked to earn gumballs, used to level up your Candy Mage
+              </p>
+
+              <div style={styles.bottom}>
+                <Space size={"small"}>
+                  <span title={{ color: "gray"}}>Price:</span>
+                  <Tag color={"#324252"} style={{height: "22px"}}>
+                    <FireFilled /> 2200
+                  </Tag>
+                </Space>
+                <span style={{ color: "gray" }}>Supply: 4700</span>
+              </div>
+            </Card>
+        </div>
+
+
         </div>
     );
   }
