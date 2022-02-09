@@ -13,6 +13,7 @@ export default function Gamify({tab}) {
 
   const { Title } = Typography;
   const { Moralis, account, isInitialized, isAuthenticated} = useMoralis();
+  const { getUser } = useCollectors();
 
   useEffect(() => {
     if (isInitialized && isAuthenticated) {
@@ -148,7 +149,7 @@ export default function Gamify({tab}) {
             Daily Donut Collection
           </Title>
           <p style={{ color: "gray"}}>
-              Eat all the donuts! Are we also collecting donuts? Who Knows! Idgaf!
+              Eat all the donuts! Are we also collecting donuts? Who Knows! Idk!
             </p>
         </div>
         <Button style={styles.collect}>Collect Donuts</Button>
